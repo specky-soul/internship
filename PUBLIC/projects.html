@@ -1,0 +1,130 @@
+<html>
+    <head>
+        <title> Services</title>
+        <link rel="stylesheet" href="style new.css">
+    </head>
+    <body>
+      <header>
+        
+            <nav>
+                <ul>
+                    <li><a href="HOME.html" > HOME</a></li>
+                    <li><a href="ABOUT.html" > ABOUT</a></li>
+                    <li><a href="SKILL.html" > SKILLS</a></li>
+                    <li><a href="CV.pdf" > OFFICIAL CV</a></li>
+                    <li><a href="projects.html" > PROJECT</a></li>
+                    <li><a href="CONTACT.html" > CONTACT</a></li>
+                </ul>
+            </nav>
+
+    </header>
+    
+ <section id="projects">
+        <div class="container">
+            <h2>PROJECTS</h2>
+            <div class="project-grid">
+                <div class="project">
+                    <img src="ANIMATION.png" alt="Project 1">
+                    <h3>PROJECT 1</h3>
+                    <p>I AM ENGAGED IN MAKING ANIMATION VIDEOS. 
+                        I MOSTLY DO MY WORKS ON TUPITUBE ANIMATION SOFTWARE,MOST OF MY WORKS ARE AWARNESS VIDEOS ,ON ENVIORNMENT CONSERVATION AND ROAD SAFETY etc.
+                    
+                    </p>
+                </div>
+                <div class="project">
+                    <img src="GAMING.png" alt="Project 2">
+                    <h3>PROJECCT 3</h3>
+                    <p>I AM ALSO INTERSETED IN MAKING APPS MANLY GAMING APPS.
+                        I AM CURRENTLY MAKING A GAMING APP, AS A PART OF ANNUAL COLLEGE FEST OF DEPARTMENT OF COMPUTER SCIENCE.</p>
+                </div>
+                <div class="project">
+                    <img src="FULL STACK.png" alt="Project 3">
+                    <h3>PROJECT 3</h3>
+                    <p>I HAVE DONE AN INTERNSHIP ON FULLSTACK WEB DEVELOPMENT AND SUCCESSFULLY COMPLETED IT WITH MAKING MY OWN RESPONSIVE PORTFOLIO WEBSITE.
+                        AND NOW WORKING ON MY BACK END DEVELOPMENT SKILLS. 
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+        <form id="form1" >
+            <input type="text" id="name" placeholder="Project Name" required />
+            <input type="text" id="status" placeholder="Status (e.g., in progress)" required />
+            <button type="submit">ADD PROJECT</button>
+        </form>
+        <h2>MY PROJECTS</h2>
+<ul id="projectList"></ul>
+
+<script>
+
+ //Form Submission (Handling User Input):
+
+         
+    document.getElementById('form1').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const status = document.getElementById('status').value;
+
+      const response = await fetch('/api/services', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, status })
+      });
+
+      const data = await response.json();
+      alert(data.message || 'Project added!');
+    });
+    
+
+  async function loadProjects() {
+    const res = await fetch('/api/services');
+    const projects = await res.json();
+
+    const list = document.getElementById('projectList');
+    list.innerHTML = '';
+
+    projects.forEach(project => {
+      const item = document.createElement('li');
+      item.textContent = `${project.name} (${project.status})`;
+      list.appendChild(item);
+    });
+  }
+
+  window.onload = loadProjects; // Auto-run when page loads
+
+    
+  </script>
+
+    
+
+   <footer>
+      <div class="footer-container">
+            <div class="footer-section">
+                <h3>CONTACT</h3>
+                <p>Email:anjananikarthil22@gmail.com</p>
+                <p>Phone: +91 62384 92191</p>
+            </div>
+            <div class="footer-section">
+                <h3>FOLLOW ME ON</h3>
+                <ul class="social-links">
+                    <li><a href="https://github.com/yourusername" target="_blank">GITHUB</a></li>
+                    <li><a href="https://www.linkedin.com/in/yourname/" target="_blank">linkedin</a></li>
+                    <li><a href="https://twitter.com/yourusername" target="_blank">X</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>ADDRESS</h3>
+       <p> NIKARTHIL HOUSE,
+                GOVT.HOSPITAL ROAD,
+                PALLURUTHY,KOCHI,ERNAKULAM-682006,KERALA,INDIA</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ANJANA S. All Rights Reserved.</p>
+        </div>   
+    </footer> 
+    
+    </body>
+</html>
