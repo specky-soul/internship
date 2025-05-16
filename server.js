@@ -10,8 +10,6 @@ const port = 3000;
 
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://spectacularspecky3:anjana@cluster0.fr98hl7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
   
 });
 
