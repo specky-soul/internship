@@ -6,11 +6,13 @@ const path = require('path');
 const contact = require('./models/contact');
 
 const app = express();
-const port = 3000;
+const port =process.env.port || 3000;
+
 
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://spectacularspecky3:anjana@cluster0.fr98hl7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
-  
+useNewUrlParser: true,
+  useUnifiedTopology: true  
 });
 
 app.use(cors());
